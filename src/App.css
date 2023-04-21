@@ -32,6 +32,8 @@ input[type="text"] {
   min-height: 100vh;
   min-width: 100vw;
   background-color: #f7f8fc;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -197,4 +199,51 @@ input[type="text"] {
 .profilePictureContainer img {
   max-height: 80%;
   border-radius: 50%;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  flex: 1;
+}
+
+.sidebarTop {
+  box-sizing: border-box;
+  display: block;
+  padding: 1px 0 0 0;
+  margin: -1px auto 0 auto;
+  height: 80px;
+  width: 100%;
+}
+
+.newMessageContainer {
+  box-sizing: border-box;
+  height: 56px;
+  width: 100%;
+  margin: 8px 0 16px 0;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+
+.newMessageButton {
+  background-color: #c2e7ff;
+  height: 56px;
+  min-width: 96px;
+  padding: 0 24px 0 0;
+  border-radius: 16px;
+  padding: 0 30px 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: box-shadow .08s linear;
+}
+
+.newMessageButton span {
+  font-size: .875rem;
+}
+
+.newMessageButton:hover {
+  cursor: pointer;
+  box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149);
 }
