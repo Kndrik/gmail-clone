@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+}
+
+.App {
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: #f7f8fc;
+}
+
+.header {
+  height: 64px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+
+.header .leftContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-width: 256px;
+}
+
+.menuSvgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  margin: 0 4px;
+}
+
+.menuSvgContainer:hover {
+  background-color: #e8e9ed;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.gmailLogo {
+  height: 44px;
+}
+
+.gmailLogo:hover {
+  cursor: pointer;
+}
