@@ -1,3 +1,5 @@
+import SidebarNav from "./SidebarNav";
+
 const Sidebar = (props) => {
     return (
         <div className="sidebar">
@@ -9,6 +11,7 @@ const Sidebar = (props) => {
                     </button>
                 </div>
             </div>
+            <SidebarNav />
         </div>
     );
 };
