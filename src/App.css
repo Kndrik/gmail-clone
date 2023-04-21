@@ -80,6 +80,14 @@ input[type="text"] {
   display: flex;
   align-items: center;
   padding: 0 5px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  transition: background-color 100ms, box-shadow 100ms;
+}
+
+.searchContainer.focused {
+  background-color: white;
+  box-shadow: 0 1px 1px 0 rgba(65,69,73,.3),0 1px 3px 1px rgba(65,69,73,.15);
 }
 
 .searchForm {
@@ -89,12 +97,24 @@ input[type="text"] {
 
 .headerButton {
   height: 47px;
-  width: 47px;
   aspect-ratio: 1/1;
-  width: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.profilePictureButton {
+  height: 47px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profilePictureButton:hover .profilePictureContainer {
+  background-color: var(--headerButtons-hover-color);
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .headerButton:hover {
@@ -106,7 +126,7 @@ input[type="text"] {
   border-radius: 50%;;
 }
 
-.searchForm .headerButton:hover .headerIcon {
+.headerButton.dark:hover .headerIcon {
   background-color: var(--searchForm-buttons-hover-color);
 }
 
@@ -138,6 +158,10 @@ input[type="text"] {
 }
 
 .headerButton.delete {
+  visibility: visible;
+}
+
+.headerButton.delete.hide {
   visibility: hidden;
 }
 
@@ -145,10 +169,9 @@ input[type="text"] {
   display: flex;
 }
 
-.profilePicContainer {
-  height: 100%;
+.profilePictureContainer {
+  height: 85%;
   aspect-ratio: 1/1;
-  box-sizing: border-box;
   border-radius: 50%;
   object-fit: contain;
   overflow: hidden;
@@ -157,11 +180,11 @@ input[type="text"] {
   align-items: center;
 }
 
-.profilePicContainer:hover {
+.profilePictureContainer:hover {
   background-color: var(--headerButtons-hover-color);
 }
 
-.profilePicContainer img {
+.profilePictureContainer img {
   max-height: 80%;
   border-radius: 50%;
 }
