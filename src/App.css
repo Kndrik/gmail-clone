@@ -1,5 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+html {
+  --sidebar-width: 256px;
+  --headerButtons-hover-color: #e8e9ed;
+  --searchForm-buttons-hover-color: #dee3eb;
+  font-family: 'Roboto', sans-serif;
+}
+
 body {
   margin: 0;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+input[type="text"] {
+  background-color: transparent;
+  outline: none;
+  border: none;
 }
 
 .App {
@@ -9,21 +32,21 @@ body {
 }
 
 .header {
+  box-sizing: border-box;
   height: 64px;
-  border-bottom: 1px solid black;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 8px;
   box-sizing: border-box;
 }
-
 
 .header .leftContainer {
   flex: 1;
   display: flex;
   align-items: center;
   height: 100%;
-  max-width: 256px;
+  max-width: var(--sidebar-width);
 }
 
 .menuSvgContainer {
@@ -35,7 +58,7 @@ body {
 }
 
 .menuSvgContainer:hover {
-  background-color: #e8e9ed;
+  background-color: var(--headerButtons-hover-color);
   border-radius: 50%;
   cursor: pointer;
 }
@@ -46,4 +69,99 @@ body {
 
 .gmailLogo:hover {
   cursor: pointer;
+}
+
+.searchContainer {
+  background-color: rgb(234, 241, 251);
+  height: 100%;
+  max-width: 722px;
+  border-radius: 8px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.searchForm {
+  height: 100%;
+  flex: 1;
+}
+
+.headerButton {
+  height: 47px;
+  width: 47px;
+  aspect-ratio: 1/1;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerButton:hover {
+  cursor: pointer;
+}
+
+.headerButton:hover .headerIcon {
+  background-color: var(--headerButtons-hover-color);
+  border-radius: 50%;;
+}
+
+.searchForm .headerButton:hover .headerIcon {
+  background-color: var(--searchForm-buttons-hover-color);
+}
+
+.headerIcon {
+  margin: 3px;
+  padding: 8px;
+}
+
+.searchForm {
+  display: flex;
+}
+
+.searchInputContainer {
+  display: flex;
+  align-items: center;
+  padding-top: 3px;
+  width: 100%;
+}
+
+.searchInput::placeholder {
+  font-size: 17px;
+  color: #5e5e5e;
+  opacity: 1;
+}
+
+.searchInput {
+  font-size: 17px;
+  width: 100%;
+}
+
+.headerButton.delete {
+  visibility: hidden;
+}
+
+.rightContainer {
+  display: flex;
+}
+
+.profilePicContainer {
+  height: 100%;
+  aspect-ratio: 1/1;
+  box-sizing: border-box;
+  border-radius: 50%;
+  object-fit: contain;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profilePicContainer:hover {
+  background-color: var(--headerButtons-hover-color);
+}
+
+.profilePicContainer img {
+  max-height: 80%;
+  border-radius: 50%;
 }
