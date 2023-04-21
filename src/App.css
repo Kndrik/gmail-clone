@@ -3,6 +3,7 @@
 html {
   --sidebar-width: 256px;
   --headerButtons-hover-color: #e8e9ed;
+  --searchForm-buttons-light-hover-color: #f0f0f0; 
   --searchForm-buttons-hover-color: #dee3eb;
   font-family: 'Roboto', sans-serif;
 }
@@ -124,6 +125,10 @@ input[type="text"] {
 .headerButton:hover .headerIcon {
   background-color: var(--headerButtons-hover-color);
   border-radius: 50%;;
+}
+
+.searchForm .headerButton:hover .headerIcon {
+  background-color: var(--searchForm-buttons-light-hover-color);
 }
 
 .headerButton.dark:hover .headerIcon {
