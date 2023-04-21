@@ -4,9 +4,18 @@ import { useState } from "react";
 
 const SidebarNav = (props) => {
     const [showMore, setShowMore] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    const handleScroll = (e) => {
+        if(e.target.scrollTop > 0 && !scrolled) {
+            setScrolled(true);
+        } else if(e.target.scrollTop === 0 && scrolled) {
+            setScrolled(false);
+        }
+    }
 
     return (
-        <div className="sidebarNav">
+        <div onScroll={handleScroll} className={"sidebarNav" + (scrolled ? " scrolled" : "")}>
             <ul className="sidebarList">
                 <NavElement pathTo="/" title="Boîte de réception" svgData="M185.087 950.131q-32.507 0-55.862-23.356-23.356-23.355-23.356-55.862V281.087q0-32.74 23.356-56.262 23.355-23.521 55.862-23.521h589.826q32.74 0 56.262 23.521 23.521 23.522 23.521 56.262v589.826q0 32.507-23.521 55.862-23.522 23.356-56.262 23.356H185.087Zm0-79.218h589.826V737.174H634q-26 40-67.5 61.5t-86.5 21.5q-45 0-86.5-21.5t-67.5-61.5H185.087v133.739Zm295.159-110.739q40.754 0 73.754-23.218 33-23.217 56.113-59.782h164.8V281.087H185.087v396.087H350q23 36.565 56.246 59.782 33.247 23.218 74 23.218ZM185.087 870.913h589.826-589.826Z" />
                 <NavElement pathTo="/starred" title="Messages suivis" svgData="m330.955 839.672 149.066-89 149.066 90.023-40.305-168.391 131.217-114.347-172.956-14.87L480 384.131l-67.043 158.521-172.956 14.305 131.427 113.796-40.473 168.919ZM212.086 1005.39l70.652-305.303L45.52 494.695l312.645-26.579L480 179.824l121.835 288.292 312.645 26.579-237.218 205.392 71.217 305.303L480 842.827 212.086 1005.39ZM480 622.13Z" />
