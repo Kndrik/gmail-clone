@@ -42,7 +42,6 @@ input[type="text"] {
   box-sizing: border-box;
   height: 64px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 8px;
   box-sizing: border-box;
@@ -78,6 +77,11 @@ input[type="text"] {
 
 .gmailLogo:hover {
   cursor: pointer;
+}
+
+.headerSearchContainer {
+  width: 100%;
+  display: flex;
 }
 
 .searchContainer {
