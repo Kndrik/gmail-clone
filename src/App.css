@@ -6,6 +6,8 @@ html {
   --searchForm-buttons-light-hover-color: #f0f0f0; 
   --searchForm-buttons-hover-color: #dee3eb;
   font-family: 'Roboto', sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -48,6 +50,7 @@ input[type="text"] {
   align-items: center;
   height: 100%;
   max-width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
 }
 
 .menuSvgContainer {
@@ -56,6 +59,7 @@ input[type="text"] {
   align-items: center;
   padding: 12px;
   margin: 0 4px;
+  overflow: hidden;
 }
 
 .menuSvgContainer:hover {
@@ -89,6 +93,7 @@ input[type="text"] {
 .searchContainer.focused {
   background-color: white;
   box-shadow: 0 1px 1px 0 rgba(65,69,73,.3),0 1px 3px 1px rgba(65,69,73,.15);
+  min-width: 442px;
 }
 
 .searchForm {
