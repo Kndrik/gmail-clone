@@ -271,6 +271,7 @@ input[type="text"] {
   padding: 0;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 li {
@@ -312,10 +313,15 @@ a:visited {
 .navLink.active {
   background-color: #d3e3fd;
   font-weight: bold;
+  color: #001d35;
 }
 
 .navLink.active svg path {
-  fill: black;
+  fill: #001d35;
+}
+
+.navLink.label.active {
+  background-color: #e1e3e1;
 }
 
 .navIcon {
@@ -329,4 +335,52 @@ a:visited {
   align-items: center;
   font-size: .875rem;
   font-weight: 300;
+}
+
+.navLink.label
+
+.labelsContainer {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.labelsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 26px;
+  padding-right: 12px;
+  color: black;
+  margin-bottom: 12px;
+}
+
+.labelsHeader span {
+  font-size: 16px;
+}
+
+.navElement.label {
+  position: relative;
+}
+
+.addLabelButton {
+  visibility: hidden;
+  position: absolute;
+  right: 12px;
+  height: 32px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addLabelButton:hover {
+  background-color: rgba(23, 78, 166, 0.06);
+  cursor: pointer;
+}
+
+.navElement.label:hover .addLabelButton {
+  visibility: visible;
 }
