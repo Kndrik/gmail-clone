@@ -426,6 +426,11 @@ a:visited {
   pointer-events: auto;
 }
 
+.animatedButton.squared {
+  aspect-ratio: none;
+  width: auto;
+}
+
 .animatedButtonContainer {
   height: 100%;
   width: 100%;
@@ -437,6 +442,10 @@ a:visited {
 
 .animatedButtonIcon {
   position: absolute;
+  z-index: 1;
+}
+
+.animatedButtonSpan {
   z-index: 1;
 }
 
