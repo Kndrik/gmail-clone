@@ -52,8 +52,8 @@ input[type="text"] {
   display: flex;
   align-items: center;
   height: 100%;
-  max-width: var(--sidebar-width);
-  min-width: var(--sidebar-width);
+  max-width: calc(var(--sidebar-width) - 8px);
+  min-width: calc(var(--sidebar-width) - 8px);
 }
 
 .menuSvgContainer {
@@ -160,7 +160,7 @@ input[type="text"] {
 .searchInputContainer {
   display: flex;
   align-items: center;
-  padding-top: 3px;
+  padding-top: 0px;
   width: 100%;
 }
 
@@ -332,7 +332,7 @@ a:visited {
 }
 
 .navElement {
-  padding: 0 12px 0 0px;
+  padding: 0 16px 0 0px;
   border-radius: 0 16px 16px 0;
   height: 32px;
   display: flex;
@@ -347,6 +347,7 @@ a:visited {
   padding-left: 26px;
 }
 
+.animatedButton:hover + .navLink,
 .navLink:hover,
 .navMoreButton:hover {
   background-color: var(--headerButtons-hover-color);
@@ -406,24 +407,63 @@ a:visited {
   position: relative;
 }
 
-.addLabelButton {
+
+.navElement.label:hover .animatedButton.animatedButton.viewWhenHover {
+  visibility: visible;
+}
+
+.animatedButton.viewWhenHover {
   visibility: hidden;
-  position: absolute;
-  right: 12px;
+}
+
+.animatedButton {
   height: 32px;
   aspect-ratio: 1/1;
-  overflow: hidden;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: auto;
 }
 
-.addLabelButton:hover {
-  background-color: rgba(23, 78, 166, 0.06);
+.animatedButtonContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.animatedButtonIcon {
+  position: absolute;
+  z-index: 1;
+}
+
+.animatedButtonBackground {
+  position: absolute;
+  border-radius: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  transition: all .2s;
+  transform: scale(0.6);
+}
+
+.animatedButtonBackground.squared {
+  border-radius: 5px;
+}
+
+.animatedButton:hover .animatedButtonBackground {
+  background-color: #dfdfe3;
+  transform: scale(1);
+}
+
+.animatedButton:hover {
   cursor: pointer;
 }
 
-.navElement.label:hover .addLabelButton {
-  visibility: visible;
+.animatedButton.absolute {
+  position: absolute;
+  right: 0;
+  margin-right: 16px;
 }
