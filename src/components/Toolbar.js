@@ -1,4 +1,5 @@
 import contactsImg from "../images/contacts.png";
+import calendarImg from "../images/calendar.png";
 import ToolButton from "./ToolButton";
 
 const Toolbar = (props) => {
@@ -6,6 +7,7 @@ const Toolbar = (props) => {
         <div className="toolBar">
             <div className="toolBarTop">
                 <ul className="toolBarList">
+                    <ToolButton image={calendarImg} />
                     <ToolButton image={contactsImg} />
                 </ul>
                 <div className="toolBarLimitation"></div>

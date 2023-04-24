@@ -228,10 +228,6 @@ input[type="text"] {
   width: 100%;
 }
 
-.sidebarTop.scrolled {
-
-}
-
 .newMessageContainer {
   box-sizing: border-box;
   height: 56px;
@@ -302,7 +298,8 @@ input[type="text"] {
   box-shadow: 4px 0px 0px 4px var(--scrollbar-color) inset;
 }
 
-.sidebarNav:hover::-webkit-scrollbar-thumb {
+.sidebarNav:hover::-webkit-scrollbar-thumb,
+.mainSectionContent:hover::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-color);
   border: 0px solid transparent;
   box-shadow: none;
@@ -483,6 +480,11 @@ a:visited {
   transform: scale(1);
 }
 
+.animatedButton:hover .animatedButtonBackground.email {
+  background-color: #e7eaee;
+  transform: scale(1.2);
+}
+
 .animatedButton:hover {
   cursor: pointer;
 }
@@ -616,6 +618,11 @@ a:visited {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 3;
+}
+
+.mainSectionHeader.scrolled {
+  box-shadow: rgba(0, 0, 0, 0.074) 1.95px 1.95px 2.6px;
 }
 
 .mainSectionHeader .left,
@@ -720,7 +727,6 @@ a:visited {
   align-items: center;
   background-color: rgb(242, 246, 252);
   box-shadow: inset 0 -1px 0 0 rgba(100,121,143,0.122);
-  gap: 8px;
   font-weight: 300;
   font-size: 14px;
   color: rgb(32, 33, 36);
@@ -735,7 +741,8 @@ a:visited {
 }
 
 .emailItemSender {
-  width: 166px;
+  width: 168px;
+  margin-left: 5px;
 }
 
 .emailItemTitle {
@@ -759,3 +766,4 @@ a:visited {
 .animatedButton.email .animatedButtonContainer svg path {
   fill: #bbbec1;
 }
+

@@ -1,9 +1,8 @@
 import AnimatedButton from "./AnimatedButton";
-import inputImage from "../images/input.png";
 
 const MainSectionHeader = (props) => {
     return (
-        <div className="mainSectionHeader">
+        <div className={"mainSectionHeader" + (props.scrolled ? " scrolled" : "")}>
             <div className="left">
                 <div className="container">
                     <AnimatedButton light={true} squared={true} svgData="M185.087 950.131q-32.507 0-55.862-23.356-23.356-23.355-23.356-55.862V281.087q0-32.74 23.356-56.262 23.355-23.521 55.862-23.521h589.826q32.74 0 56.262 23.521 23.521 23.522 23.521 56.262v589.826q0 32.507-23.521 55.862-23.522 23.356-56.262 23.356H185.087Zm0-79.218h589.826V281.087H185.087v589.826Z" />
