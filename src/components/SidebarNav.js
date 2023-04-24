@@ -60,7 +60,6 @@ const SidebarNav = (props) => {
                     <AnimatedButton size={20} classes="" svgData="M440.391 865.609v-250h-250v-79.218h250v-250h79.218v250h250v79.218h-250v250h-79.218Z" />
                 </div>
                 <LabelNavElement pathTo="/label" title="labelName" svgData="M856.392 576 681.74 822.348q-15.827 21.957-37.758 34.87-21.931 12.913-47.939 12.913H183.391q-32.941 0-56.08-23.138-23.138-23.139-23.138-56.08V361.087q0-33.175 23.138-56.479 23.139-23.304 56.08-23.304h412.652q26.008 0 47.939 13.478t37.758 34.87L856.392 576Z" />
-                <AnimatedButton size={20} classes="" squared={true} svgData="" text="1-50 sur 4 258"/>
             </div>
         </div>
     );
