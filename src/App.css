@@ -639,7 +639,69 @@ a:visited {
 .mainSectionContent {
   flex: 1;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: overlay;
   display: flex;
   flex-direction: column;
+}
+
+.sortBar {
+  height: 56px;
+  width: 100%;
+  display: flex;
+  background-color: white;
+}
+
+.sortBarItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sortBarItem:hover {
+  cursor: pointer;
+  background-color: rgba(68,71,70,0.059);
+}
+
+
+.itemContent {
+  flex: 1;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.itemIcon {
+  margin: 0 19px 0 19px;
+}
+
+.itemContent span {
+  flex: 1;
+  font-size: 14px;
+  width: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.active .itemContent span {
+  flex: 1;
+  color: #0b57d0;
+  font-weight: bold;
+}
+
+.sortBarItem .decoration {
+  visibility: hidden;
+  width: 90%;
+  height: 3px;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+  background-color: #0b57d0;
+  align-self: center;
+}
+
+.sortBarItem.active .decoration {
+  visibility: visible;
 }
