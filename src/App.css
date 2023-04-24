@@ -423,6 +423,7 @@ a:visited {
 .animatedButton {
   height: 32px;
   aspect-ratio: 1/1;
+  width: fit-content;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -432,6 +433,7 @@ a:visited {
 
 .animatedButton.squared {
   aspect-ratio: auto;
+  min-width: 25px;
 }
 
 .animatedButtonContainer {
@@ -473,6 +475,11 @@ a:visited {
 
 .animatedButton:hover .animatedButtonBackground {
   background-color: #dfdfe3;
+  transform: scale(1);
+}
+
+.animatedButton:hover .animatedButtonBackground.light {
+  background-color: #f2f2f2;
   transform: scale(1);
 }
 
@@ -597,4 +604,42 @@ a:visited {
 .toolIcon {
   z-index: 1;
   pointer-events: none;
+}
+
+.mainSectionHeader {
+  height: 48px;
+  width: 100%;
+  background-color: white;
+  padding: 0 32px 0 16px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainSectionHeader .left,
+.mainSectionHeader .right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.left .container {
+  display: flex;
+}
+
+.animatedButtonSpan {
+  color: rgb(94, 94, 94);
+}
+
+.mailAmountButton {
+  margin-right: 10px;
+}
+
+.mainSectionContent {
+  flex: 1;
+  width: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 }

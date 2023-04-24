@@ -1,5 +1,5 @@
 const AnimatedButton = (props) => {
-    const classes = "animatedButton " + (props.squared ? " squared " : "") + props.classes;
+    const classes = "animatedButton" + (props.squared ? " squared " : " ") + props.classes;
     return (
         <button  
             className={classes} 
@@ -19,7 +19,7 @@ const AnimatedButton = (props) => {
                         />
                     </svg>
                 }
-                <div className={"animatedButtonBackground" + (props.squared ? " squared" : "")}></div>
+                <div className={"animatedButtonBackground" + (props.squared ? " squared" : "") + (props.light ? " light" : "")}></div>
             </div>
         </button>
     );
