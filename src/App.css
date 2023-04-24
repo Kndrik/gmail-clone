@@ -481,7 +481,7 @@ a:visited {
 }
 
 .animatedButton:hover .animatedButtonBackground.email {
-  background-color: #e7eaee;
+  background-color: #57595c20;
   transform: scale(1.2);
 }
 
@@ -735,6 +735,10 @@ a:visited {
   position: relative;
 }
 
+.emailItem.selected {
+  background-color: rgb(194, 219, 255);
+}
+
 .emailItem:hover {
   box-shadow: inset 1px 0 0 #dadce0,inset -1px 0 0 #dadce0,0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15);
   z-index: 2;
@@ -770,7 +774,11 @@ a:visited {
   fill: #454746;
 }
 
+.emailItem.selected .animatedButton.email:first-child .animatedButtonContainer svg path {
+  fill: #454746;
+}
+
 .animatedButton.email .animatedButtonContainer svg path {
-  fill: #bbbec1;
+  fill: #53555665;
 }
 
