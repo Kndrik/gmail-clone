@@ -5,7 +5,7 @@ const EmailList = (props) => {
         <div className="emailList">
             <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
             <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
+            <EmailItem unread sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
             <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
             <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
             <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 

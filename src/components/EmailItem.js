@@ -8,7 +8,7 @@ const EmailItem = (props) => {
 
     return (
         <div 
-            className={"emailItem" + (selected ? " selected" : "")}
+            className={"emailItem" + (selected ? " selected" : "") + (props.unread ? " unread" : "")}
             onMouseEnter={() => setHover(true)} 
             onMouseLeave={() => setHover(false)}>
             <AnimatedButtonEmailItem 

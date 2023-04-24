@@ -131,25 +131,26 @@ input[type="text"] {
 }
 
 .profilePictureButton:hover .profilePictureContainer {
-  background-color: var(--headerButtons-hover-color);
   border-radius: 50%;
   cursor: pointer;
 }
 
 .headerButton:hover {
   cursor: pointer;
-}
-
-.headerButton:hover .headerIcon {
   background-color: var(--headerButtons-hover-color);
-  border-radius: 50%;;
+  border-radius: 50%;
 }
 
-.searchForm .headerButton:hover .headerIcon {
+.headerButton:hover {
+  background-color: var(--headerButtons-hover-color);
+  border-radius: 50%;
+}
+
+.searchForm .headerButton:hover {
   background-color: var(--searchForm-buttons-light-hover-color);
 }
 
-.headerButton.dark:hover .headerIcon {
+.headerButton.dark:hover {
   background-color: var(--searchForm-buttons-hover-color);
 }
 
@@ -733,6 +734,11 @@ a:visited {
   height: 40px;
   box-sizing: border-box;
   position: relative;
+}
+
+.emailItem.unread {
+  background-color: white;
+  font-weight: bold;
 }
 
 .emailItem.selected {
