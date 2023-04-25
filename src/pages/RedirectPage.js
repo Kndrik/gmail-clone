@@ -1,4 +1,4 @@
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../components/AuthContext";
 import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -9,9 +9,9 @@ const RedirectPage = () => {
         <div>
             {
                 !!currentUser ?
-                <Navigate to="/login" />
-                :
                 <Navigate to="/mail" />
+                :
+                <Navigate to="/login" />
             }
         </div>
     )
