@@ -12,7 +12,11 @@ const LabelNavElement = (props) => {
                         d={props.svgData}
                     />
                 </svg>
-                <span className="navTitle">{props.title}</span>
+                {
+                    props.reduced ?
+                    null :
+                    <span className="navTitle">{props.title}</span>
+                }
             </NavLink>
         </li>
     );

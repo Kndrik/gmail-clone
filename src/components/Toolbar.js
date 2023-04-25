@@ -1,9 +1,19 @@
 import contactsImg from "../images/contacts.png";
 import calendarImg from "../images/calendar.png";
 import ToolButton from "./ToolButton";
+import { useState } from "react";
 
 const Toolbar = (props) => {
+    const [reduced, setReduced] = useState(false);
+
     return (
+        reduced ?
+        <div className="toolBar reduced">
+            <button onClick={() => setReduced(false)} className="toolBarExpandButton">
+                +
+            </button>
+        </div>
+        :
         <div className="toolBar">
             <div className="toolBarTop">
                 <ul className="toolBarList">
@@ -17,7 +27,7 @@ const Toolbar = (props) => {
             </div>
             <div className="toolBarBottom">
                 <ul className="toolBarList">
-                    <ToolButton size={20} svgData="M375 829.566 318.434 773l198-198-198-198L375 320.434 629.566 575 375 829.566Z" />
+                    <ToolButton clickEvent={() => setReduced(true)} size={20} svgData="M375 829.566 318.434 773l198-198-198-198L375 320.434 629.566 575 375 829.566Z" />
                 </ul>
             </div>
         </div>

@@ -25,9 +25,9 @@ const Header = (props) => {
     return (
         <div className="header">
             <div className="leftContainer">
-                <div className="menuSvgContainer">
+                <button onClick={props.changeSideBar} className="menuSvgContainer">
                     <svg className="menuIcon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24"><path fill="#606367" d="M110.391 831.827v-79.218h739.218v79.218H110.391Zm0-216.218v-79.218h739.218v79.218H110.391Zm0-216.218v-79.783h739.218v79.783H110.391Z"/></svg>
-                </div>
+                </button>
                 <img className="gmailLogo" src={logo} alt="gmail logo" />
             </div>
             <div className="headerSearchContainer">

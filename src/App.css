@@ -218,6 +218,11 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: width 0.3s;
+}
+
+.sidebar.reduced {
+  width: 74px;
 }
 
 .sidebarTop {
@@ -250,11 +255,18 @@ input[type="text"] {
   display: flex;
   align-items: center;
   gap: 14px;
-  transition: box-shadow .08s linear;
+  transition: box-shadow .08s linear, min-width .2s, width .2s, padding .2s;
+}
+
+.newMessageButton.reduced {
+  min-width: 56px;
+  padding-right: 0px;
 }
 
 .newMessageButton span {
   font-size: .875rem;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .newMessageButton:hover {
@@ -264,6 +276,12 @@ input[type="text"] {
 
 .sidebarNav {
   overflow-y: overlay;
+}
+
+.navTitle {
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
 }
 
 * {
@@ -372,6 +390,8 @@ a:visited {
 
 .navIcon {
   margin-right: 18px;
+  min-width: 18px;
+  min-height: 18px;
 }
 
 .navLink,
@@ -399,6 +419,10 @@ a:visited {
   padding-right: 12px;
   color: black;
   margin-bottom: 12px;
+}
+
+.labelsHeader.reduced {
+  padding-left: 20px;
 }
 
 .labelsHeader span {
@@ -534,6 +558,33 @@ a:visited {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  transition: width .3s;
+}
+
+.toolBar.reduced {
+  width: 8px;
+  position: relative;
+}
+
+.toolBar.reduced button {
+  position: absolute;
+  bottom: 20px;
+  right: -2px;
+  width: 30px;
+  height: 40px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 2px solid gray;
+  background-color: rgb(236, 235, 235);
+  z-index: 2;
+  transition: width 0.3s;
+}
+
+.toolBar.reduced button:hover {
+  cursor: pointer;
+  width: 70px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .toolBarList {

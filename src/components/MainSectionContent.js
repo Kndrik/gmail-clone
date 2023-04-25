@@ -8,7 +8,7 @@ const MainSectionContent = (props) => {
     return (
         <div onScroll={props.handleScroll} className="mainSectionContent">
             <MainSectionContentSortBar />
-            <EmailList />
+            <EmailList onSelectItem={props.onSelectItem} />
             <div className="footer">
                 <div className="left">
                     <div>9,13 Go utilisés sur 15 Go</div>
