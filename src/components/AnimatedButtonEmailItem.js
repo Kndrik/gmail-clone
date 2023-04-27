@@ -1,7 +1,7 @@
 const AnimatedButtonEmailItem = (props) => {
     return (
         <button  
-            className="animatedButton email"
+            className={"animatedButton email " + (props.classes ? props.classes : "")}
             onClick={props.clickEvent ?
                         props.clickEvent : 
                         (e) => {e.preventDefault()}}

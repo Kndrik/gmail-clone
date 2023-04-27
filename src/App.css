@@ -839,6 +839,11 @@ a:visited {
   fill: #53555665;
 }
 
+.emailItem.important .animatedButton.email.important .animatedButtonContainer svg path,
+.emailItem.starred .animatedButton.email.star .animatedButtonContainer svg path {
+  fill: #edca76;
+}
+
 .footer {
   color: #666;
   font-size: 12px;
