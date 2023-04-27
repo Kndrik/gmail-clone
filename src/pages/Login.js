@@ -1,12 +1,7 @@
-import { app } from "../firebaseInit";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { useContext } from "react";
 import { AuthContext } from "../components/AuthContext";
 import { Navigate } from "react-router-dom";
-
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-auth.languageCode = "it";
+import { logIn } from "../AuthManager";
 
 const Login = (props) => {
     const {currentUser} = useContext(AuthContext);
@@ -16,15 +11,12 @@ const Login = (props) => {
     }
 
     const handleSignIn = async () => {
-        signInWithPopup(auth, provider)
-            .then((result) => {
-
-            }).catch((error) => {
-
-            });
+        logIn().then((result) => {
+            console.log("Successfully logged in.");
+        }).catch((error) => {
+            console.error("There was an error logging in", error);
+        });
     };
-
-
 
     return (
         <div className="loginPage">
