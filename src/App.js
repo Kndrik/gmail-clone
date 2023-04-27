@@ -1,7 +1,3 @@
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import MainSection from './components/MainSection';
-import Toolbar from './components/Toolbar';
 import RedirectPage from './pages/RedirectPage';
 import Login from './pages/Login';
 import Mails from './pages/Mails';

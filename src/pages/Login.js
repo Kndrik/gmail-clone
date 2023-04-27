@@ -10,7 +10,7 @@ const Login = (props) => {
     const {currentUser} = useContext(AuthContext);
 
     if(!!currentUser) {
-        return <Navigate to="/mail" />
+        return <Navigate to="/" />
     }
 
     const handleSignIn = async () => {

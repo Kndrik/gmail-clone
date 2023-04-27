@@ -1,22 +1,43 @@
 import MainSectionContentSortBar from "./MainSectionContentSortBar";
 import EmailList from "./EmailList";
+import { useLocation } from "react-router-dom";
 
-import { getInboxEmails } from "../EmailFetcher";
+import { getInboxEmails, getSentEmails } from "../EmailFetcher";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const MainSectionContent = (props) => {
-    const [inboxEmails, setInboxEmails] = useState([]);
+    const [emails, setEmails] = useState([]);
     const [loading, setLoading] = useState(true);
+    const location = useLocation();
+    const receivedEmails = useRef([]);
+    const sentEmails = useRef([]);
+    
 
     useEffect(() => {
         getInboxEmails().then((result) => {
-            setInboxEmails(result);
+            receivedEmails.current = result;
+            setEmails(receivedEmails.current);
             setLoading(false);
         }).catch((error) => {
             console.error("There was an error getting inbox emails", error);
         });
+
+        getSentEmails().then((result) => {
+            sentEmails.current = result;
+            setLoading(false);
+        }).catch((error) => {
+            console.error("There was an error getting sent emails", error);
+        })
     }, []);
+
+    useEffect(() => {
+        if (location.pathname.includes("inbox")) {
+            setEmails(receivedEmails.current);
+        } else if (location.pathname.includes("sent")) {
+            setEmails(sentEmails.current);
+        }
+    }, [location]);
 
     return (
         <div onScroll={props.handleScroll} className="mainSectionContent">
@@ -24,7 +45,7 @@ const MainSectionContent = (props) => {
             {
                 loading ?
                 <div className="mainSectionLoading"> Loading... </div> :
-                <EmailList onSelectItem={props.onSelectItem} emails={inboxEmails} />
+                <EmailList onSelectItem={props.onSelectItem} emails={emails} />
             }
             <div className="footer">
                 <div className="left">

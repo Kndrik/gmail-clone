@@ -9,6 +9,17 @@ export async function getInboxEmails() {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
         emails.push(doc.data());
-    })
+    });
+    return emails;
+}
+
+export async function getSentEmails() {
+    let emails = [];
+    const ref = collection(db, "users", auth.currentUser.uid, "sent_emails");
+    const q = query(ref);
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        emails.push(doc.data());
+    });
     return emails;
 }

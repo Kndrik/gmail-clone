@@ -8,12 +8,16 @@ const EmailList = (props) => {
                 props.emails.map((email) => {
                     return (
                         <EmailItem
-                            sender={email.sender}
+                            sender={email.sender || email.receiver}
                             title={email.title}
                             date={email.date}
                             important={email.important}
                             starred={email.starred}
-                            unread={!email.read}
+                            unread={
+                                email.receiver ?
+                                false :
+                                !email.read
+                            }
                             key={uuidv4()} 
                         />
                     );

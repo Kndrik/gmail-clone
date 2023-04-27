@@ -9,7 +9,7 @@ const RedirectPage = () => {
         <div>
             {
                 !!currentUser ?
-                <Navigate to="/mail" />
+                <Navigate to="/mail/inbox" />
                 :
                 <Navigate to="/login" />
             }
