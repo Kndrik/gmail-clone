@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { logIn } from "../AuthManager";
 import LoginButton from "../components/LoginButton";
 import { db } from "../firebaseInit";
-import { addDoc, collection, setDoc } from "firebase/firestore/lite";
+import { setDoc, doc } from "firebase/firestore/lite";
 
 const Login = (props) => {
     const {currentUser} = useContext(AuthContext);
@@ -18,11 +18,13 @@ const Login = (props) => {
             const uid = result.user.uid;
             const name = result.user.displayName;
             const picture = result.user.photoURL;
+            const email = result.user.email;
 
-            setDoc(collection(db, 'users'), {
+            setDoc(doc(db, 'users', uid), {
                 id: uid,
                 name: name,
-                pictureUrl: picture
+                pictureUrl: picture,
+                emailAddress: email
             });
         }).catch((error) => {
             console.error("There was an error logging in", error);
