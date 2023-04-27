@@ -2,7 +2,7 @@ import { app } from './firebaseInit';
 import { getAuth, signInWithPopup, signOut,
             GoogleAuthProvider } from "firebase/auth";
 
-const auth = getAuth(app);
+export const auth = getAuth(app);
 auth.languageCode = "it";
 const provider = new GoogleAuthProvider();
 

@@ -1,34 +1,24 @@
 import EmailItem from "./EmailItem";
+import { v4 as uuidv4 } from "uuid";
 
 const EmailList = (props) => {
     return (
         <div className="emailList">
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." unread/> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." unread/> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." unread/> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." unread/> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
-            <EmailItem sender="Rakuten" title="Welcome to Rakuten" date="22 avr." /> 
+            {
+                props.emails.map((email) => {
+                    return (
+                        <EmailItem
+                            sender={email.sender}
+                            title={email.title}
+                            date={email.date}
+                            important={email.important}
+                            starred={email.starred}
+                            unread={!email.read}
+                            key={uuidv4()} 
+                        />
+                    );
+                })
+            }
         </div>
     );
 };

@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { logIn } from "../AuthManager";
 import LoginButton from "../components/LoginButton";
 import { db } from "../firebaseInit";
-import { setDoc, doc } from "firebase/firestore/lite";
+import { setDoc, doc } from "firebase/firestore";
 
 const Login = (props) => {
     const {currentUser} = useContext(AuthContext);

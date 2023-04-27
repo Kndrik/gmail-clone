@@ -1,14 +1,31 @@
 import MainSectionContentSortBar from "./MainSectionContentSortBar";
 import EmailList from "./EmailList";
 
-import { useState } from "react";
+import { getInboxEmails } from "../EmailFetcher";
+
+import { useEffect, useState } from "react";
 
 const MainSectionContent = (props) => {
+    const [inboxEmails, setInboxEmails] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        getInboxEmails().then((result) => {
+            setInboxEmails(result);
+            setLoading(false);
+        }).catch((error) => {
+            console.error("There was an error getting inbox emails", error);
+        });
+    }, []);
 
     return (
         <div onScroll={props.handleScroll} className="mainSectionContent">
             <MainSectionContentSortBar />
-            <EmailList onSelectItem={props.onSelectItem} />
+            {
+                loading ?
+                <div className="mainSectionLoading"> Loading... </div> :
+                <EmailList onSelectItem={props.onSelectItem} emails={inboxEmails} />
+            }
             <div className="footer">
                 <div className="left">
                     <div>9,13 Go utilisés sur 15 Go</div>
