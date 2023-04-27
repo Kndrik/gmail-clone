@@ -41,6 +41,7 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
 }
 
 .header {
@@ -920,4 +921,129 @@ a:visited {
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
   background-color: rgb(248, 248, 248);
+}
+
+.emailFormWindow {
+  visibility: hidden;
+  z-index: 3;
+  width: 450px;
+  height: 466px;
+  position: absolute;
+  bottom: 0px;
+  right: 60px;
+  background-color: white;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0px 8px 10px 1px rgba(0,0,0,.14),0px 3px 14px 2px rgba(0,0,0,.12),0px 5px 5px -3px rgba(0,0,0,.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.emailFormWindow.show {
+  visibility: visible;
+}
+
+.emailFormHeader {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(242, 246, 252);
+  padding: 10px 16px;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: rgb(4, 30, 73);
+}
+
+.emailFormHeader .right {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.mailFormWindowButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mailFormWindowButton:hover {
+  cursor: pointer;
+  background-color: rgba(215, 215, 215, 0.367);
+}
+
+.emailFormContent {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.emailFormFooter {
+  height: 60px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0 16px 0 16px;
+}
+
+.emailForm {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  padding: 0 16px 0 16px;
+  box-sizing: border-box;
+}
+
+.sendButton {
+  height: 36px;
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: #0b57d0;
+  color: white;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100px;
+  border-radius: 18px;
+}
+
+.sendButton:hover {
+  cursor: pointer;
+  background-color: #1b61d1;
+  box-shadow: 0 1px 2px 0 rgba(26,115,232,0.451),0 1px 3px 1px rgba(26,115,232,0.302);
+}
+
+.emailForm input::placeholder {
+  font-size: 14px;
+}
+
+.emailForm input,
+.emailForm textarea {
+  font-size: 14px;
+  border: none;
+  height: 40px;
+  padding: 10px 0;
+  box-sizing: border-box;
+  box-shadow: inset 0 -1px 0 0 rgba(100,121,143,0.122);
+}
+
+.emailForm input:focus,
+.emailForm textarea:focus {
+  outline: none;
+}
+
+.emailForm textarea {
+  font-size: 13px;
+  border: none;
+  flex: 1;
+  box-shadow: none;
+  resize: none;
+  font-family: 'Roboto', sans-serif;
+  line-height: 20px;
 }
