@@ -2,6 +2,9 @@ import { useContext } from "react";
 import { AuthContext } from "../components/AuthContext";
 import { Navigate } from "react-router-dom";
 import { logIn } from "../AuthManager";
+import LoginButton from "../components/LoginButton";
+import { db } from "../firebaseInit";
+import { addDoc, collection, setDoc } from "firebase/firestore/lite";
 
 const Login = (props) => {
     const {currentUser} = useContext(AuthContext);
@@ -12,7 +15,15 @@ const Login = (props) => {
 
     const handleSignIn = async () => {
         logIn().then((result) => {
-            console.log("Successfully logged in.");
+            const uid = result.user.uid;
+            const name = result.user.displayName;
+            const picture = result.user.photoURL;
+
+            setDoc(collection(db, 'users'), {
+                id: uid,
+                name: name,
+                pictureUrl: picture
+            });
         }).catch((error) => {
             console.error("There was an error logging in", error);
         });
@@ -20,7 +31,13 @@ const Login = (props) => {
 
     return (
         <div className="loginPage">
-            <button onClick={handleSignIn}>Sign in with Google</button>
+            <div className="loginContainer">
+                <div className="top">
+                    <h1>Welcome to Gmail Clone</h1>
+                    <div>Please Sign in</div>
+                </div>
+                <LoginButton clickEvent={handleSignIn} />
+            </div>
         </div>
     )
 };
