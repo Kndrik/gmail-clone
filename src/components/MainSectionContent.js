@@ -12,6 +12,7 @@ const MainSectionContent = (props) => {
     const location = useLocation();
     const receivedEmails = useRef([]);
     const sentEmails = useRef([]);
+    const onReceived = useRef(true);
 
     useEffect(() => {
         if (props.refresh) {
@@ -19,55 +20,50 @@ const MainSectionContent = (props) => {
         }
     }, [props.refresh]);
 
-    const refresh = () => {
-        setLoading(true);
-        getInboxEmails().then((result) => {
-            receivedEmails.current = result;
-            setLoading(false);
-            if (!location.pathname.includes("sent")) {
-                setEmails(receivedEmails.current);
-            }
-        }).catch((error) => {
-            console.error("There was an error getting inbox emails", error);
-        });
-
-        getSentEmails().then((result) => {
-            sentEmails.current = result;
-            setLoading(false);
-            if (location.pathname.includes("sent")) {
-                setEmails(sentEmails.current);
-            }
-        }).catch((error) => {
-            console.error("There was an error getting sent emails", error);
-        });
-
-        props.onRefresh();
-    }
-
     useEffect(() => {
         refresh();
     }, []);
 
     useEffect(() => {
-        if (location.pathname.includes("inbox")) {
-            getInboxEmails().then((result) => {
-                receivedEmails.current = result;
-                setEmails(receivedEmails.current);
-                setLoading(false);
-            }).catch((error) => {
-                console.error("There was an error getting inbox emails", error);
-            });
-            setEmails(receivedEmails.current);
-        } else if (location.pathname.includes("sent")) {
-            getSentEmails().then((result) => {
-                sentEmails.current = result;
-                setLoading(false);
-            }).catch((error) => {
-                console.error("There was an error getting sent emails", error);
-            });
-            setEmails(sentEmails.current);
-        }
+        refresh();
     }, [location]);
+
+    const sortEmails = (list, sortBy) => {
+        const sorted = list.filter((email) => {
+            return email[sortBy] === true;
+        });
+
+        setEmails(sorted);
+    };
+
+    const refresh = async () => {
+        setLoading(true);
+
+        let fetchedEmails = [];
+        if (location.pathname.includes("sent")) {
+            const result = await getSentEmails();
+            fetchedEmails = result;
+        } else {
+            const result = await getInboxEmails();
+            fetchedEmails = result;
+        }
+        
+        const path = location.pathname;
+        if (path.includes("starred") ||
+            path.includes("imp")) {
+            let trimmedPath = path.substring(path.lastIndexOf("/") +1);
+            if (trimmedPath === "imp") {
+                trimmedPath = "important";
+            }
+            sortEmails(fetchedEmails, trimmedPath);
+        } else {
+            setEmails(fetchedEmails);
+        }
+
+        setLoading(false);
+        props.onRefresh();
+    }
+
 
     return (
         <div onScroll={props.handleScroll} className="mainSectionContent">
