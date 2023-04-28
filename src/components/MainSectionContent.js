@@ -4,15 +4,13 @@ import { useLocation } from "react-router-dom";
 
 import { getInboxEmails, getSentEmails } from "../EmailFetcher";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, memo, useRef } from "react";
 
-const MainSectionContent = (props) => {
+const MainSectionContent = memo((props) => {
     const [emails, setEmails] = useState([]);
     const [loading, setLoading] = useState(true);
     const location = useLocation();
-    const receivedEmails = useRef([]);
-    const sentEmails = useRef([]);
-    const onReceived = useRef(true);
+    const oldProps = useRef(null);
 
     useEffect(() => {
         if (props.refresh) {
@@ -64,14 +62,13 @@ const MainSectionContent = (props) => {
         props.onRefresh();
     }
 
-
     return (
         <div onScroll={props.handleScroll} className="mainSectionContent">
             <MainSectionContentSortBar />
             {
                 loading ?
                 <div className="mainSectionLoading"> Loading... </div> :
-                <EmailList onSelectItem={props.onSelectItem} emails={emails} />
+                <EmailList selectedEmails={props.selectedEmails} changeSelection={props.changeSelection} emails={emails} />
             }
             <div className="footer">
                 <div className="left">
@@ -88,6 +85,6 @@ const MainSectionContent = (props) => {
             </div>
         </div>
     )
-};
+});
 
 export default MainSectionContent;

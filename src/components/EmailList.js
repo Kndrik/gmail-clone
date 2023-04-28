@@ -8,6 +8,7 @@ const EmailList = (props) => {
                 props.emails.map((email) => {
                     return (
                         <EmailItem
+                            changeSelection={props.changeSelection}
                             inboxEmail={email.inbox ? email.inbox : false}
                             sender={email.inbox ? email.sender : email.receiver}
                             title={email.title}
@@ -20,6 +21,7 @@ const EmailList = (props) => {
                                 !email.read
                             }
                             id={email.docId}
+                            selected={props.selectedEmails.includes(email.docId)}
                             key={uuidv4()} 
                         />
                     );

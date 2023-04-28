@@ -42,7 +42,7 @@ const EmailItem = (props) => {
     return (
         <div 
             className={"emailItem" + 
-                (selected ? " selected" : "") + 
+                (props.selected ? " selected" : "") + 
                 (unread ? " unread" : "") + 
                 (important ? " important" : "") +
                 (starred ? " starred" : "")}
@@ -50,13 +50,10 @@ const EmailItem = (props) => {
             onMouseLeave={() => setHover(false)}
         >
             <AnimatedButtonEmailItem 
-                clickEvent={() => {
-                    setSelected(!selected);
-                    //props.onSelect()
-                }} 
+                clickEvent={() => props.changeSelection(props.id)} 
                 size={18} 
                 svgData= {
-                    (selected ? 
+                    (props.selected ? 
                     "m419.348 749.87 293.638-294.203-59.957-60.334-233.681 233.493-111.681-111.493-59.957 60.334L419.348 749.87ZM192.319 951.827q-36.44 0-62.293-25.853t-25.853-62.293V288.319q0-36.595 25.853-62.559t62.293-25.964h575.362q36.595 0 62.559 25.964t25.964 62.559v575.362q0 36.44-25.964 62.293t-62.559 25.853H192.319Zm0-88.146h575.362V288.319H192.319v575.362Zm0-575.362v575.362-575.362Z"
                     :
                     "M185.087 950.131q-32.507 0-55.862-23.356-23.356-23.355-23.356-55.862V281.087q0-32.74 23.356-56.262 23.355-23.521 55.862-23.521h589.826q32.74 0 56.262 23.521 23.521 23.522 23.521 56.262v589.826q0 32.507-23.521 55.862-23.522 23.356-56.262 23.356H185.087Zm0-79.218h589.826V281.087H185.087v589.826Z")
