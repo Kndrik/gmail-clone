@@ -35,7 +35,7 @@ const EmailItem = (props) => {
         if (props.inboxEmail) {
             updateInboxEmail(props.id, updatedData);
         } else {
-            updateSentEmail(props.id, props.sender, updatedData);
+            updateSentEmail(props.id, updatedData);
         }
     }
 

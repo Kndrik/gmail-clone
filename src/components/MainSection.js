@@ -22,7 +22,6 @@ const MainSection = (props) => {
     }
 
     const askRefresh = () => {
-        console.log("Ask for refresh");
         setTriggerRefresh(true);
     }
 

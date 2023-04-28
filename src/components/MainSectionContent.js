@@ -14,10 +14,8 @@ const MainSectionContent = (props) => {
     const sentEmails = useRef([]);
 
     useEffect(() => {
-        console.log("in effect");
         if (props.refresh) {
             refresh();
-            console.log('refreshing');
         }
     }, [props.refresh]);
 

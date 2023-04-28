@@ -72,12 +72,16 @@ export async function sendEmail(receiver, email) {
 export async function updateInboxEmail(id, updatedData) {
     const ref = doc(db, "users", auth.currentUser.uid, "inbox_emails", id);
     updateDoc(ref, updatedData).then(result => {
-        console.log("Successfully updated email");
     }).catch(error => {
         console.error("There was a problem updating the received email", error);
     });
 }
 
-export async function updateSentEmail(id, receiver, updatedData) {
-    console.log("Updating sent email");
+export async function updateSentEmail(id, updatedData) {
+    const ref = doc(db, "users", auth.currentUser.uid, "sent_emails", id);
+    updateDoc(ref, updatedData).then(result => {
+        return "ok";
+    }).catch(error => {
+        console.error("There was a problem updating the sent email", error);
+    });
 }
