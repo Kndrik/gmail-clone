@@ -12,7 +12,7 @@ import { AuthContext } from "../components/AuthContext";
 
 const Mails = () => {
     const [reducedSideBar, setReducedSideBar] = useState(false);
-    const [writingEmail, setWritingEmail] = useState(true);
+    const [writingEmail, setWritingEmail] = useState(false);
     const {currentUser} = useContext(AuthContext);
 
     if (!currentUser) {

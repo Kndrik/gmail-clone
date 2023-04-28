@@ -12,13 +12,23 @@ const MainSectionContent = (props) => {
     const location = useLocation();
     const receivedEmails = useRef([]);
     const sentEmails = useRef([]);
-    
 
     useEffect(() => {
+        console.log("in effect");
+        if (props.refresh) {
+            refresh();
+            console.log('refreshing');
+        }
+    }, [props.refresh]);
+
+    const refresh = () => {
+        setLoading(true);
         getInboxEmails().then((result) => {
             receivedEmails.current = result;
-            setEmails(receivedEmails.current);
             setLoading(false);
+            if (!location.pathname.includes("sent")) {
+                setEmails(receivedEmails.current);
+            }
         }).catch((error) => {
             console.error("There was an error getting inbox emails", error);
         });
@@ -26,9 +36,18 @@ const MainSectionContent = (props) => {
         getSentEmails().then((result) => {
             sentEmails.current = result;
             setLoading(false);
+            if (location.pathname.includes("sent")) {
+                setEmails(sentEmails.current);
+            }
         }).catch((error) => {
             console.error("There was an error getting sent emails", error);
-        })
+        });
+
+        props.onRefresh();
+    }
+
+    useEffect(() => {
+        refresh();
     }, []);
 
     useEffect(() => {
@@ -47,7 +66,7 @@ const MainSectionContent = (props) => {
                 setLoading(false);
             }).catch((error) => {
                 console.error("There was an error getting sent emails", error);
-            })
+            });
             setEmails(sentEmails.current);
         }
     }, [location]);

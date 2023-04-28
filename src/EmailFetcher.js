@@ -1,25 +1,31 @@
 import { db } from "./firebaseInit";
-import { getDocs, query, collection, where, addDoc, orderBy } from "firebase/firestore";
+import { getDocs, query, collection, 
+        where, addDoc, orderBy, 
+        limit, doc, updateDoc } from "firebase/firestore";
 import { auth } from './AuthManager';
 
 export async function getInboxEmails() {
     let emails = [];
     const ref = collection(db, "users", auth.currentUser.uid, "inbox_emails");
-    const q = query(ref, orderBy("date", "desc"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-        emails.push(doc.data());
-    });
+    emails = await getEmailsFromRef(ref);
     return emails;
 }
 
 export async function getSentEmails() {
     let emails = [];
     const ref = collection(db, "users", auth.currentUser.uid, "sent_emails");
-    const q = query(ref, orderBy("date", "desc"));
+    emails = await getEmailsFromRef(ref);
+    return emails;
+}
+
+async function getEmailsFromRef(ref) {
+    let emails = [];
+    const q = query(ref, orderBy("date", "desc"), limit(50));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-        emails.push(doc.data());
+        const data = doc.data();
+        data.docId = doc.id;
+        emails.push(data);
     });
     return emails;
 }
@@ -32,27 +38,46 @@ export async function sendEmail(receiver, email) {
         throw new Error("There is no user with this email address.");
     }
 
-    // Add email to receiver's inbox collection
+    // Get receiver's id and display name
     let receiverID;
     let receiverName;
     querySnapshot.forEach((doc) => {
         receiverID = doc.id;
         receiverName = doc.data().name;
     })
+    
+    // Add receiver's name to the email's data
+    let sentEmail = email;
+    sentEmail.receiver = receiverName;
+    sentEmail.inbox = true;
+
+    // Add email to receiver's inbox collection
     const receiverRef = collection(db, "users", receiverID, "inbox_emails");
-    addDoc(receiverRef, email).then((result) => {
+    addDoc(receiverRef, sentEmail).then((result) => {
         return "Email sent";
     }).catch((error) => {
         throw new Error(error);
     });
 
     // Add email to the user's sent collection
-    let sentEmail = email;
-    sentEmail.receiver = receiverName;
+    sentEmail.inbox = false;
     const userRef = collection(db, "users", auth.currentUser.uid, "sent_emails");
     addDoc(userRef, sentEmail).then((result) => {
         return "Email added to sent section";
     }).catch((error) => {
         throw new Error("Couldn't add the email to the sent collection", error);
     });
+}
+
+export async function updateInboxEmail(id, updatedData) {
+    const ref = doc(db, "users", auth.currentUser.uid, "inbox_emails", id);
+    updateDoc(ref, updatedData).then(result => {
+        console.log("Successfully updated email");
+    }).catch(error => {
+        console.error("There was a problem updating the received email", error);
+    });
+}
+
+export async function updateSentEmail(id, receiver, updatedData) {
+    console.log("Updating sent email");
 }

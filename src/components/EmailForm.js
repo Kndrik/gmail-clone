@@ -20,6 +20,7 @@ const EmailForm = (props) => {
             sender: auth.currentUser.displayName,
             senderEmail: auth.currentUser.email,
             senderPicURL: auth.currentUser.photoURL,
+            receiverEmail: receiver,
             title: title,
             content: content,
             date: Timestamp.now()
