@@ -33,8 +33,21 @@ const MainSectionContent = (props) => {
 
     useEffect(() => {
         if (location.pathname.includes("inbox")) {
+            getInboxEmails().then((result) => {
+                receivedEmails.current = result;
+                setEmails(receivedEmails.current);
+                setLoading(false);
+            }).catch((error) => {
+                console.error("There was an error getting inbox emails", error);
+            });
             setEmails(receivedEmails.current);
         } else if (location.pathname.includes("sent")) {
+            getSentEmails().then((result) => {
+                sentEmails.current = result;
+                setLoading(false);
+            }).catch((error) => {
+                console.error("There was an error getting sent emails", error);
+            })
             setEmails(sentEmails.current);
         }
     }, [location]);

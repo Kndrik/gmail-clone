@@ -1,6 +1,11 @@
 import EmailFormWindowButton from "./EmailFormWindowButton";
 
+import { sendEmail } from "../EmailFetcher";
+
 import { useState } from "react";
+
+import { auth } from "../AuthManager";
+import { Timestamp } from "firebase/firestore";
 
 const EmailForm = (props) => {
     const [receiver, setReceiver] = useState("");
@@ -10,6 +15,22 @@ const EmailForm = (props) => {
 
     const handleSubmission = (e) => {
         e.preventDefault();
+        console.log(auth.currentUser);
+        const email = {
+            sender: auth.currentUser.displayName,
+            senderEmail: auth.currentUser.email,
+            senderPicURL: auth.currentUser.photoURL,
+            title: title,
+            content: content,
+            date: Timestamp.now()
+        }
+
+        sendEmail(receiver.toLowerCase().trim(), email).then((result) => {
+            console.log("Email sent");
+            cancelEmail();
+        }).catch((error) => {
+            console.error("There was an error sending the email", error);
+        });
     };
 
     const cancelEmail = () => {
@@ -55,7 +76,7 @@ const EmailForm = (props) => {
                     />
                 </form>
                 <div className="emailFormFooter">
-                    <button className="sendButton">Envoyer</button>
+                    <button onClick={handleSubmission} className="sendButton">Envoyer</button>
                 </div>
             </div>
         </div>

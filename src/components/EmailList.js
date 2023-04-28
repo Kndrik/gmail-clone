@@ -10,7 +10,7 @@ const EmailList = (props) => {
                         <EmailItem
                             sender={email.sender || email.receiver}
                             title={email.title}
-                            date={email.date}
+                            date={email.date.toDate().toLocaleDateString()}
                             important={email.important}
                             starred={email.starred}
                             unread={
