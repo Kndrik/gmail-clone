@@ -1047,3 +1047,34 @@ a:visited {
   font-family: 'Roboto', sans-serif;
   line-height: 20px;
 }
+
+.toast {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 24px;
+  padding: 8px 24px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  border-radius: 4px;
+  background-color: #202124;
+  box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302),0 4px 8px 3px rgba(60,64,67,0.149);
+}
+
+.toastText {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: 300;
+}
+
+.closeToastButton {
+  color:white;
+}
+
+.closeToastButton:hover {
+  cursor: pointer;
+}

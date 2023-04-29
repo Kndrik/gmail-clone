@@ -2,20 +2,27 @@ import EmailFormWindowButton from "./EmailFormWindowButton";
 
 import { sendEmail } from "../EmailFetcher";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { auth } from "../AuthManager";
 import { Timestamp } from "firebase/firestore";
+
+import { ToastContext } from "../pages/Mails";
 
 const EmailForm = (props) => {
     const [receiver, setReceiver] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [fullScreen, setFullScreen] = useState(false);
+    const toast = useContext(ToastContext);
 
     const handleSubmission = (e) => {
         e.preventDefault();
-        console.log(auth.currentUser);
+        if (!receiver || !title) {
+            toast("Receiver and title can't be empty.");
+            return;
+        }
+
         const email = {
             sender: auth.currentUser.displayName,
             senderEmail: auth.currentUser.email,
@@ -26,10 +33,12 @@ const EmailForm = (props) => {
             date: Timestamp.now()
         }
 
+        toast("sending the email", false);
         sendEmail(receiver.toLowerCase().trim(), email).then((result) => {
-            console.log("Email sent");
+            toast("Message sent.", true);
             cancelEmail();
         }).catch((error) => {
+            toast(error, false);
             console.error("There was an error sending the email", error);
         });
     };

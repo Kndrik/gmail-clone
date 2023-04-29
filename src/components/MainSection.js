@@ -18,10 +18,6 @@ const MainSection = (props) => {
         }
     };
 
-    useEffect(() => {
-        console.log(selected);
-    }, [selected]);
-
     const changeSelection = (id) => {
         let newArray = selected.slice();
         if (newArray.includes(id)) {
