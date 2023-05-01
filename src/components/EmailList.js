@@ -7,6 +7,11 @@ const EmailList = (props) => {
         <div className="emailList">
             {
                 props.emails.map((email) => {
+                    let forceRead = false;
+                    if (props.selectedEmails.includes(email.docId) &&
+                        props.markAsRead) {
+                        forceRead = true;
+                    }
                     return (
                         <EmailItem
                             setSelectAll={props.setSelectAll}
@@ -24,6 +29,7 @@ const EmailList = (props) => {
                                 false :
                                 !email.read
                             }
+                            forceRead={forceRead}
                             id={email.docId}
                             selected={props.selectedEmails.includes(email.docId)}
                             forceSelect={props.selectAll}

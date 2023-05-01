@@ -69,6 +69,7 @@ const MainSectionContent = memo((props) => {
                 <div>Loading...</div>
                 :
                 <EmailList 
+                    markAsRead={props.markAsRead}
                     setSelectAll={props.setSelectAll}
                     setUnselectAll={props.setUnselectAll}
                     unselectAll={props.unselectAll} 

@@ -12,6 +12,12 @@ const EmailItem = (props) => {
     const previousImportant = useRef(props.important);
     const previousStarred = useRef(props.starred);
 
+    const [refresh, setRefresh] = useState(0);
+
+    useEffect(() => {
+        console.log(props.unread);
+    });
+
     useEffect(() => {
         if (previousUnread.current == unread &&
             previousImportant.current == important &&
@@ -34,19 +40,42 @@ const EmailItem = (props) => {
             props.setSelectAll(false);
             props.changeSelection(props.id);
         }
+
+        if (props.forceRead && unread) {
+            console.log("hello");
+            updateFirestoreEmail();
+        }
     });
 
+    const changeRead = () => {
+        console.log("changing read");
+        setUnread(unread => !unread);
+    }
+
     const updateFirestoreEmail = () => {
-        const updatedData = {
+        console.log("updating firestore");
+
+        let updatedData = {
             read: !unread,
             important: important,
             starred: starred
         };
 
+        if (props.forceRead) {
+            updatedData.read = true;
+        }
+
         if (props.inboxEmail) {
-            updateInboxEmail(props.id, updatedData);
+            updateInboxEmail(props.id, updatedData).then(result => {
+            }
+            );
         } else {
             updateSentEmail(props.id, updatedData);
+        }
+
+        if (props.forceRead) {
+            props.changeSelection(props.id);
+            props.setSelectAll(false);
         }
     }
 
@@ -89,6 +118,7 @@ const EmailItem = (props) => {
             />
             <AnimatedButtonEmailItem 
                 clickEvent={() => {
+
                     setImportant(!important);
                 }}
                 classes="important"
@@ -110,9 +140,7 @@ const EmailItem = (props) => {
                         clickEvent={() => props.deleteEmail(props.id)}
                         size={18} svgData="M262.246 951.827q-37.095 0-62.809-25.603t-25.714-62.543V321.087h-51.406v-88.146H341.26v-44.449h276.726v44.449h219.697v88.146h-51.406v542.594q0 36.44-25.964 62.293t-62.559 25.853H262.246Zm435.508-630.74H262.246v542.594h435.508V321.087ZM356.377 784.768h77.405v-386h-77.405v386Zm169.841 0H604v-386h-77.782v386ZM262.246 321.087v542.594-542.594Z" />
                     <AnimatedButtonEmailItem 
-                        clickEvent={() => {
-                            setUnread(!unread);
-                        }} 
+                        clickEvent={changeRead} 
                         size={18} svgData="M152.319 911.827q-36.44 0-62.293-25.853t-25.853-62.293V328.319q0-36.595 25.853-62.559t62.293-25.964h655.362q36.595 0 62.559 25.964t25.964 62.559v495.362q0 36.44-25.964 62.293t-62.559 25.853H152.319ZM480 621.493 152.319 406.159v417.522h655.362V406.159L480 621.493Zm0-81.174 325.015-212H155.652l324.348 212Zm-327.681-134.16v-77.84V823.681 406.159Z" />
                     <AnimatedButtonEmailItem size={18} svgData="m615.029 769.971 59.406-58.275-152.13-152.884v-189.03h-80.609V591.72l173.333 178.251ZM480.052 991.827q-86.154 0-161.93-32.69-75.777-32.69-132.165-89.064Q129.57 813.7 96.871 737.942q-32.698-75.758-32.698-161.901 0-86.143 32.772-161.962 32.772-75.819 89.044-132.09 56.271-56.272 132.055-89.232Q393.828 159.796 480 159.796q86.172 0 161.956 32.961 75.784 32.96 132.055 89.232 56.272 56.271 89.232 132.055Q896.204 489.828 896.204 576q0 86.172-32.961 161.956-32.96 75.784-89.232 132.055-56.271 56.272-132.038 89.044-75.768 32.772-161.921 32.772ZM480 576Zm-.193 327.681q135.41 0 231.642-95.761 96.232-95.76 96.232-231.732 0-135.971-96.18-231.92-96.181-95.949-231.496-95.949-135.599 0-231.643 95.902Q152.319 440.124 152.319 576q0 136.16 96.038 231.92 96.039 95.761 231.45 95.761Z" />
                 </div>

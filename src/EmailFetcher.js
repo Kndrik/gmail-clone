@@ -72,19 +72,12 @@ export async function sendEmail(receiver, email) {
 
 export async function updateInboxEmail(id, updatedData) {
     const ref = doc(db, "users", auth.currentUser.uid, "inbox_emails", id);
-    updateDoc(ref, updatedData).then(result => {
-    }).catch(error => {
-        console.error("There was a problem updating the received email", error);
-    });
+    await updateDoc(ref, updatedData);
 }
 
 export async function updateSentEmail(id, updatedData) {
     const ref = doc(db, "users", auth.currentUser.uid, "sent_emails", id);
-    updateDoc(ref, updatedData).then(result => {
-        return "ok";
-    }).catch(error => {
-        console.error("There was a problem updating the sent email", error);
-    });
+    await updateDoc(ref, updatedData);
 }
 
 export async function deleteInboxEmails(ids) {
@@ -96,6 +89,7 @@ export async function deleteInboxEmails(ids) {
 
 export async function deleteSentEmails(ids) {
     await ids.forEach(id => {
+        console.log(id);
         const ref = doc(db, "users", auth.currentUser.uid, "sent_emails", id);
         deleteDoc(ref);
     });

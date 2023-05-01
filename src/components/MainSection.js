@@ -14,10 +14,23 @@ const MainSection = (props) => {
     const [selectAll, setSelectAll] = useState(false);
     const [triggerUnselect, setTriggerUnselect] = useState(false);
     const [triggerRefresh, setTriggerRefresh] = useState(false);
-    //const selected = useRef([]);
     const [selected, setSelected] = useState([]);
+    const [markAsRead, setMarkAsRead] = useState(false);
     const location = useLocation();
     const toast = useContext(ToastContext);
+
+    useEffect(() => {
+        setSelectAll(false);
+        setTriggerUnselect(true);
+        setSelected([]);
+    }, [location]);
+    
+    useEffect(() => {
+        if (selected.length <= 0 && markAsRead) {
+            setMarkAsRead(false);
+            askRefresh();
+        }
+    }, [selected]);
 
     const handleScroll = (e) => {
         if(e.target.scrollTop > 0 && !scrolled) {
@@ -37,6 +50,10 @@ const MainSection = (props) => {
         setSelected(newArray);
     };
 
+    const triggerRead = () => {
+        setMarkAsRead(true);
+        setTriggerUnselect(true);
+    }
 
     const changeSelectionAll = () => {
         setSelectAll(!selectAll);
@@ -46,10 +63,15 @@ const MainSection = (props) => {
         }
     }
 
-    const deleteSelected = async (id) => {
+    const deleteSelected = async (singleId) => {
         toast("Deleting...");
-
-        const toDelete = id ? [id] : selected;
+       
+        let toDelete;
+        if (typeof(singleId) === "string") {
+            toDelete = [singleId];
+        } else {
+            toDelete = selected;
+        }
     
         if (location.pathname.includes("sent")) {
             deleteSentEmails(toDelete).then(result => {
@@ -78,6 +100,7 @@ const MainSection = (props) => {
         <div className="mainSectionContainer">
             <div className="mainSection">
                 <MainSectionHeader 
+                    setMarkAsRead={triggerRead}
                     allSelected={selectAll}
                     changeSelection={changeSelectionAll} 
                     deleteEmails={deleteSelected} 
@@ -85,6 +108,7 @@ const MainSection = (props) => {
                     onRefresh={askRefresh} 
                     scrolled={scrolled} />
                 <MainSectionContent 
+                    markAsRead={markAsRead}
                     setSelectAll={setSelectAll}
                     setUnselectAll={setTriggerUnselect}
                     unselectAll={triggerUnselect}
