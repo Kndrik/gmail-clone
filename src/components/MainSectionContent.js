@@ -61,10 +61,6 @@ const MainSectionContent = memo((props) => {
         props.onRefresh();
     }
 
-    const removeEmail = () => {
-        refresh();
-    }
-
     return (
         <div onScroll={props.handleScroll} className="mainSectionContent">
             <MainSectionContentSortBar />
@@ -72,7 +68,15 @@ const MainSectionContent = memo((props) => {
                 loading ?
                 <div>Loading...</div>
                 :
-                <EmailList deleteEmail={props.deleteEmails} selectedEmails={props.selectedEmails} changeSelection={props.changeSelection} emails={emails} />
+                <EmailList 
+                    setSelectAll={props.setSelectAll}
+                    setUnselectAll={props.setUnselectAll}
+                    unselectAll={props.unselectAll} 
+                    selectAll={props.selectAll} 
+                    deleteEmail={props.deleteEmails} 
+                    selectedEmails={props.selectedEmails} 
+                    changeSelection={props.changeSelection} 
+                    emails={emails} />
             }
             <div className="footer">
                 <div className="left">

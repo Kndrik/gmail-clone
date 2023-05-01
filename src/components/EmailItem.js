@@ -1,23 +1,16 @@
 import AnimatedButtonEmailItem from "./AnimatedButtonEmailItem";
-import { useState, useEffect, useRef,
-        useContext } from "react";
+import { useState, useEffect, useRef } from "react";
 
-import { updateInboxEmail, updateSentEmail,
-        deleteInboxEmails, deleteSentEmails } from "../EmailFetcher";
-
-import { ToastContext } from "../pages/Mails";
-
+import { updateInboxEmail, updateSentEmail } from "../EmailFetcher";
 
 const EmailItem = (props) => {
     const [hover, setHover] = useState(false);
-    const [selected, setSelected] = useState(false);
     const [unread, setUnread] = useState(props.unread);
     const [important, setImportant] = useState(props.important);
     const [starred, setStarred] = useState(props.starred);
     const previousUnread = useRef(props.unread);
     const previousImportant = useRef(props.important);
     const previousStarred = useRef(props.starred);
-    const toast = useContext(ToastContext)
 
     useEffect(() => {
         if (previousUnread.current == unread &&
@@ -30,6 +23,18 @@ const EmailItem = (props) => {
         previousStarred.current = starred;
         updateFirestoreEmail();
     }, [unread, important, starred]);
+
+    useEffect(() => {
+        if (!props.selected && props.forceSelect) {
+            props.setUnselectAll(false);
+            props.changeSelection(props.id);
+        }
+
+        if (props.selected && props.forceUnselect) {
+            props.setSelectAll(false);
+            props.changeSelection(props.id);
+        }
+    });
 
     const updateFirestoreEmail = () => {
         const updatedData = {
@@ -56,7 +61,11 @@ const EmailItem = (props) => {
             onMouseLeave={() => setHover(false)}
         >
             <AnimatedButtonEmailItem 
-                clickEvent={() => props.changeSelection(props.id)} 
+                clickEvent={() => {
+                    props.setSelectAll(false);
+                    props.setUnselectAll(false);
+                    props.changeSelection(props.id)
+                }} 
                 size={18} 
                 svgData= {
                     (props.selected ? 

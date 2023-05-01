@@ -1,7 +1,7 @@
 import MainSectionHeader from "./MainSectionHeader";
 import MainSectionContent from "./MainSectionContent";
 
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import { ToastContext } from "../pages/Mails";
 
@@ -12,6 +12,7 @@ import { deleteInboxEmails, deleteSentEmails } from "../EmailFetcher";
 const MainSection = (props) => {
     const [scrolled, setScrolled] = useState(false);
     const [selectAll, setSelectAll] = useState(false);
+    const [triggerUnselect, setTriggerUnselect] = useState(false);
     const [triggerRefresh, setTriggerRefresh] = useState(false);
     //const selected = useRef([]);
     const [selected, setSelected] = useState([]);
@@ -35,6 +36,15 @@ const MainSection = (props) => {
         }
         setSelected(newArray);
     };
+
+
+    const changeSelectionAll = () => {
+        setSelectAll(!selectAll);
+
+        if(selectAll) {
+            setTriggerUnselect(true);
+        }
+    }
 
     const deleteSelected = async (id) => {
         toast("Deleting...");
@@ -67,8 +77,24 @@ const MainSection = (props) => {
     return (
         <div className="mainSectionContainer">
             <div className="mainSection">
-                <MainSectionHeader deleteEmails={deleteSelected} emailsSelected={selected.length > 0} onRefresh={askRefresh} scrolled={scrolled} />
-                <MainSectionContent deleteEmails={deleteSelected} selectedEmails={selected} changeSelection={changeSelection} onRefresh={() => setTriggerRefresh(false)} refresh={triggerRefresh} handleScroll={handleScroll} />
+                <MainSectionHeader 
+                    allSelected={selectAll}
+                    changeSelection={changeSelectionAll} 
+                    deleteEmails={deleteSelected} 
+                    emailsSelected={selected.length > 0} 
+                    onRefresh={askRefresh} 
+                    scrolled={scrolled} />
+                <MainSectionContent 
+                    setSelectAll={setSelectAll}
+                    setUnselectAll={setTriggerUnselect}
+                    unselectAll={triggerUnselect}
+                    selectAll={selectAll} 
+                    deleteEmails={deleteSelected} 
+                    selectedEmails={selected} 
+                    changeSelection={changeSelection} 
+                    onRefresh={() => setTriggerRefresh(false)} 
+                    refresh={triggerRefresh} 
+                    handleScroll={handleScroll} />
             </div>
         </div>
     )

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import EmailItem from "./EmailItem";
 import { v4 as uuidv4 } from "uuid";
 
@@ -8,6 +9,8 @@ const EmailList = (props) => {
                 props.emails.map((email) => {
                     return (
                         <EmailItem
+                            setSelectAll={props.setSelectAll}
+                            setUnselectAll={props.setUnselectAll}
                             deleteEmail={props.deleteEmail}
                             changeSelection={props.changeSelection}
                             inboxEmail={email.inbox ? email.inbox : false}
@@ -23,6 +26,8 @@ const EmailList = (props) => {
                             }
                             id={email.docId}
                             selected={props.selectedEmails.includes(email.docId)}
+                            forceSelect={props.selectAll}
+                            forceUnselect={props.unselectAll}
                             key={uuidv4()} 
                         />
                     );
