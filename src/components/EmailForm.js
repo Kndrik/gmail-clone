@@ -33,7 +33,7 @@ const EmailForm = (props) => {
             date: Timestamp.now()
         }
 
-        toast("sending the email", false);
+        toast("Sending the message...", false);
         sendEmail(receiver.toLowerCase().trim(), email).then((result) => {
             toast("Message sent.", true);
             cancelEmail();

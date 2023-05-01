@@ -679,10 +679,17 @@ a:visited {
 }
 
 .mainSectionHeader .left,
-.mainSectionHeader .right {
+.mainSectionHeader .right,
+.mainSectionHeaderButtons {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.mainSectionHeaderButtons .left {
+  padding-right: 10px;
+  height: 20px;
+  border-right: 1px solid rgba(0, 0, 0, 0.09);
 }
 
 .left .container {
@@ -868,7 +875,10 @@ a:visited {
 }
 
 .footer .right {
+  justify-self: flex-end;
   text-align: end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .loginPage {
