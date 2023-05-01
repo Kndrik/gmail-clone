@@ -26,7 +26,6 @@ const Mails = () => {
     }
 
     const createToast = (text, canClose) => {
-        console.log("creating toast with text", text);
         setToasting(true);
         setToastText(text);
         setCanCloseToast(canClose);

@@ -1,7 +1,12 @@
 import AnimatedButtonEmailItem from "./AnimatedButtonEmailItem";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef,
+        useContext } from "react";
 
-import { updateInboxEmail, updateSentEmail } from "../EmailFetcher";
+import { updateInboxEmail, updateSentEmail,
+        deleteInboxEmails, deleteSentEmails } from "../EmailFetcher";
+
+import { ToastContext } from "../pages/Mails";
+
 
 const EmailItem = (props) => {
     const [hover, setHover] = useState(false);
@@ -12,6 +17,7 @@ const EmailItem = (props) => {
     const previousUnread = useRef(props.unread);
     const previousImportant = useRef(props.important);
     const previousStarred = useRef(props.starred);
+    const toast = useContext(ToastContext)
 
     useEffect(() => {
         if (previousUnread.current == unread &&
@@ -91,7 +97,9 @@ const EmailItem = (props) => {
                 hover ?
                 <div className="hoverItems">
                     <AnimatedButtonEmailItem size={18} svgData="M189.058 942.696q-30.994 0-53.374-22.38-22.38-22.38-22.38-53.374V351.609q0-16.276 4.065-28.511 4.066-12.236 12.863-22.7l56-73.253q9.116-10.464 21.471-15.428t27.887-4.964h488.82q15.532 0 27.554 4.964 12.022 4.964 21.297 15.428l56.667 73.253q8.637 10.464 12.782 22.7 4.145 12.235 4.145 28.511v515.333q0 30.994-22.427 53.374-22.426 22.38-53.486 22.38H189.058Zm15.55-616.03h550.276l-35.606-44H239.975l-35.367 44Zm-15.55 66.667v473.609h581.884V393.333H189.058ZM480 794.405l161-160.761-47.964-48.282-77.63 77.631V473.47h-70.652v189.523l-77.79-77.631-47.805 48.282L480 794.405Zm-290.942 72.537h581.884-581.884Z" />
-                    <AnimatedButtonEmailItem size={18} svgData="M262.246 951.827q-37.095 0-62.809-25.603t-25.714-62.543V321.087h-51.406v-88.146H341.26v-44.449h276.726v44.449h219.697v88.146h-51.406v542.594q0 36.44-25.964 62.293t-62.559 25.853H262.246Zm435.508-630.74H262.246v542.594h435.508V321.087ZM356.377 784.768h77.405v-386h-77.405v386Zm169.841 0H604v-386h-77.782v386ZM262.246 321.087v542.594-542.594Z" />
+                    <AnimatedButtonEmailItem 
+                        clickEvent={() => props.deleteEmail(props.id)}
+                        size={18} svgData="M262.246 951.827q-37.095 0-62.809-25.603t-25.714-62.543V321.087h-51.406v-88.146H341.26v-44.449h276.726v44.449h219.697v88.146h-51.406v542.594q0 36.44-25.964 62.293t-62.559 25.853H262.246Zm435.508-630.74H262.246v542.594h435.508V321.087ZM356.377 784.768h77.405v-386h-77.405v386Zm169.841 0H604v-386h-77.782v386ZM262.246 321.087v542.594-542.594Z" />
                     <AnimatedButtonEmailItem 
                         clickEvent={() => {
                             setUnread(!unread);

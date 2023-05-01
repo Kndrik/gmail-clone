@@ -1,7 +1,8 @@
 import { db } from "./firebaseInit";
 import { getDocs, query, collection, 
         where, addDoc, orderBy, 
-        limit, doc, updateDoc } from "firebase/firestore";
+        limit, doc, updateDoc,
+        deleteDoc } from "firebase/firestore";
 import { auth } from './AuthManager';
 
 export async function getInboxEmails() {
@@ -83,5 +84,19 @@ export async function updateSentEmail(id, updatedData) {
         return "ok";
     }).catch(error => {
         console.error("There was a problem updating the sent email", error);
+    });
+}
+
+export async function deleteInboxEmails(ids) {
+    await ids.forEach(id => {
+        const ref = doc(db, "users", auth.currentUser.uid, "inbox_emails", id);
+        deleteDoc(ref);
+    });
+}
+
+export async function deleteSentEmails(ids) {
+    await ids.forEach(id => {
+        const ref = doc(db, "users", auth.currentUser.uid, "sent_emails", id);
+        deleteDoc(ref);
     });
 }

@@ -8,6 +8,7 @@ const EmailList = (props) => {
                 props.emails.map((email) => {
                     return (
                         <EmailItem
+                            deleteEmail={props.deleteEmail}
                             changeSelection={props.changeSelection}
                             inboxEmail={email.inbox ? email.inbox : false}
                             sender={email.inbox ? email.sender : email.receiver}

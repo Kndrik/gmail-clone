@@ -10,7 +10,6 @@ const MainSectionContent = memo((props) => {
     const [emails, setEmails] = useState([]);
     const [loading, setLoading] = useState(true);
     const location = useLocation();
-    const oldProps = useRef(null);
 
     useEffect(() => {
         if (props.refresh) {
@@ -62,13 +61,18 @@ const MainSectionContent = memo((props) => {
         props.onRefresh();
     }
 
+    const removeEmail = () => {
+        refresh();
+    }
+
     return (
         <div onScroll={props.handleScroll} className="mainSectionContent">
             <MainSectionContentSortBar />
             {
                 loading ?
-                <div className="mainSectionLoading"> Loading... </div> :
-                <EmailList selectedEmails={props.selectedEmails} changeSelection={props.changeSelection} emails={emails} />
+                <div>Loading...</div>
+                :
+                <EmailList deleteEmail={props.deleteEmails} selectedEmails={props.selectedEmails} changeSelection={props.changeSelection} emails={emails} />
             }
             <div className="footer">
                 <div className="left">
