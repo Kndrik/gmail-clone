@@ -1188,6 +1188,7 @@ a:visited {
   text-indent: 0px;
   border-spacing: 0;
   margin-bottom: 20px;
+  white-space: pre-wrap;
 }
 
 .mailViewButtons {

@@ -82,7 +82,9 @@ const EmailForm = (props) => {
                     <textarea 
                         id="content" 
                         value={content}
-                        onChange={(e) => setContent(e.target.value)}
+                        onChange={(e) => {
+                            setContent(e.target.value.substring(0, Math.min(e.target.value.length, 10000)));
+                        }}
                     />
                 </form>
                 <div className="emailFormFooter">

@@ -1,6 +1,7 @@
 import MainSectionHeader from "./MainSectionHeader";
 import MainSectionContent from "./MainSectionContent";
 import MailView from "./MailView";
+import MailViewSectionHeader from "./MailViewSectionHeader";
 
 import { useState, useContext, useEffect } from "react";
 
@@ -102,30 +103,51 @@ const MainSection = (props) => {
     return (
         <div className="mainSectionContainer">
             <div className="mainSection">
-                <MainSectionHeader 
-                    setMarkAsRead={triggerRead}
-                    allSelected={selectAll}
-                    changeSelection={changeSelectionAll} 
-                    deleteEmails={deleteSelected} 
-                    emailsSelected={selected.length > 0} 
-                    onRefresh={askRefresh} 
-                    scrolled={scrolled} />
                 <Routes>
-                    <Route path='view/:mailId' element={<MailView />} />
-                    <Route path='/*' element={                
-                        <MainSectionContent 
-                            markAsRead={markAsRead}
-                            setSelectAll={setSelectAll}
-                            setUnselectAll={setTriggerUnselect}
-                            unselectAll={triggerUnselect}
-                            selectAll={selectAll} 
-                            deleteEmails={deleteSelected} 
-                            selectedEmails={selected} 
-                            changeSelection={changeSelection} 
-                            onRefresh={() => setTriggerRefresh(false)} 
-                            refresh={triggerRefresh} 
-                            handleScroll={handleScroll} />
-                        } />
+                    <Route 
+                        path='view/:mailId'
+                        element={<MailViewSectionHeader handleScroll={handleScroll} />}
+                    />
+                    <Route 
+                        path='/*'
+                        element={                
+                            <MainSectionHeader 
+                                setMarkAsRead={triggerRead}
+                                allSelected={selectAll}
+                                changeSelection={changeSelectionAll} 
+                                deleteEmails={deleteSelected} 
+                                emailsSelected={selected.length > 0} 
+                                onRefresh={askRefresh} 
+                                scrolled={scrolled} 
+                            />
+                        }
+                    />
+                </Routes>
+                <Routes>
+                    <Route 
+                        path='view/:mailId' 
+                        element={
+                            <MailView />
+                        }
+                    />
+                    <Route 
+                        path='/*' 
+                        element={                
+                            <MainSectionContent 
+                                markAsRead={markAsRead}
+                                setSelectAll={setSelectAll}
+                                setUnselectAll={setTriggerUnselect}
+                                unselectAll={triggerUnselect}
+                                selectAll={selectAll} 
+                                deleteEmails={deleteSelected} 
+                                selectedEmails={selected} 
+                                changeSelection={changeSelection} 
+                                onRefresh={() => setTriggerRefresh(false)} 
+                                refresh={triggerRefresh} 
+                                handleScroll={handleScroll} 
+                            />
+                        } 
+                    />
                 </Routes>
             </div>
         </div>

@@ -2,7 +2,8 @@ import { db } from "./firebaseInit";
 import { getDocs, query, collection, 
         where, addDoc, orderBy, 
         limit, doc, updateDoc,
-        deleteDoc } from "firebase/firestore";
+        deleteDoc, 
+        getDoc} from "firebase/firestore";
 import { auth } from './AuthManager';
 
 export async function getInboxEmails() {
@@ -93,4 +94,20 @@ export async function deleteSentEmails(ids) {
         const ref = doc(db, "users", auth.currentUser.uid, "sent_emails", id);
         deleteDoc(ref);
     });
+}
+
+export async function getEmailFromId(id) {
+    let ref = doc(db, "users", auth.currentUser.uid, "inbox_emails", id);
+    let email = await getDoc(ref);
+    if (email.data()) {
+        return email.data();
+    }
+
+    ref = doc(db, "users", auth.currentUser.uid, "sent_emails", id);
+    email = await getDoc(ref);  
+    if (email.data()) {
+        return email.data();
+    } 
+
+    throw new Error("Couldn't find the email in the database.");
 }
