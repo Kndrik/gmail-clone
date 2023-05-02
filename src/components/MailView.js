@@ -35,7 +35,7 @@ const MailView = (props) => {
                         </div>
                     </div>
                     <div className="mailViewText">
-                        Voici le contenu du mail
+                        it's me
                     </div>
                     <div className="mailViewButtons">
                         <MailViewButton 

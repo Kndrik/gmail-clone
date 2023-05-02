@@ -1148,18 +1148,23 @@ a:visited {
 .mailViewInformations > .top {
   display: flex;
   justify-content: space-between;
-  align-items: top;
+  align-items: center;
 }
 
 .mailViewInformations > .top > .right {
   display: flex;
   gap: 16px;
-  align-items: top;
+  align-items: center;
+}
+
+.mailViewInformations > .top > .left {
+  display: flex;
+  align-items: center;
 }
 
 .mailViewInformations > .top > .right > .animatedButton {
   margin-top: -10px;
-  margin-bottom: -6px;
+  margin-bottom: -10px;
 }
 
 .mailViewSenderName {
