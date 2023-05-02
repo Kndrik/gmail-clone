@@ -24,12 +24,7 @@ const EmailList = (props) => {
                             date={email.date.toDate().toLocaleDateString()}
                             important={email.important ? email.important : false}
                             starred={email.starred ? email.starred : false}
-                            unread={
-                                !email.inbox ?
-                                false :
-                                !email.read
-                            }
-                            forceRead={forceRead}
+                            unread={!email.read}
                             id={email.docId}
                             selected={props.selectedEmails.includes(email.docId)}
                             forceSelect={props.selectAll}

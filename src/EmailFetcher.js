@@ -62,6 +62,7 @@ export async function sendEmail(receiver, email) {
 
     // Add email to the user's sent collection
     sentEmail.inbox = false;
+    sentEmail.read = true;
     const userRef = collection(db, "users", auth.currentUser.uid, "sent_emails");
     addDoc(userRef, sentEmail).then((result) => {
         return "Email added to sent section";
