@@ -90,7 +90,6 @@ export async function deleteInboxEmails(ids) {
 
 export async function deleteSentEmails(ids) {
     await ids.forEach(id => {
-        console.log(id);
         const ref = doc(db, "users", auth.currentUser.uid, "sent_emails", id);
         deleteDoc(ref);
     });

@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react";
 
 import { updateInboxEmail, updateSentEmail } from "../EmailFetcher";
 
+import { Link } from "react-router-dom";
+
 const EmailItem = (props) => {
     const [hover, setHover] = useState(false);
     const [unread, setUnread] = useState(props.unread);
@@ -56,7 +58,8 @@ const EmailItem = (props) => {
     }
 
     return (
-        <div 
+        <Link 
+            to={"view/" + props.id}
             className={"emailItem" + 
                 (props.selected ? " selected" : "") + 
                 (unread ? " unread" : "") + 
@@ -123,7 +126,7 @@ const EmailItem = (props) => {
                 :
                 <span className="emailItemDate">{props.date}</span>
             }
-        </div>
+        </Link>
     );
 };
 
