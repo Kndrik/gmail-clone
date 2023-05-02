@@ -11,8 +11,6 @@ import React, { useState, useContext } from "react";
 
 import { AuthContext } from "../components/AuthContext";
 
-import { Route, Routes } from "react-router-dom";
-
 export const ToastContext = React.createContext();
 
 const Mails = () => {
@@ -48,10 +46,7 @@ const Mails = () => {
                         reduced={reducedSideBar} 
                         openEmailWindow={() => setWritingEmail(true)}
                     />
-                    <Routes>
-                        <Route path='view/:mailId' element={<div>yo</div>} />
-                        <Route path='/*' element={<MainSection />} />
-                    </Routes>
+                    <MainSection />
                     <Toolbar />
                 </div>
                 <EmailForm show={writingEmail} closeWindow={() => setWritingEmail(false)} />

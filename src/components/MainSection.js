@@ -1,5 +1,6 @@
 import MainSectionHeader from "./MainSectionHeader";
 import MainSectionContent from "./MainSectionContent";
+import MailView from "./MailView";
 
 import { useState, useContext, useEffect } from "react";
 
@@ -8,6 +9,8 @@ import { ToastContext } from "../pages/Mails";
 import { useLocation } from "react-router-dom";
 
 import { deleteInboxEmails, deleteSentEmails } from "../EmailFetcher";
+
+import { Routes, Route } from "react-router-dom";
 
 const MainSection = (props) => {
     const [scrolled, setScrolled] = useState(false);
@@ -107,18 +110,23 @@ const MainSection = (props) => {
                     emailsSelected={selected.length > 0} 
                     onRefresh={askRefresh} 
                     scrolled={scrolled} />
-                <MainSectionContent 
-                    markAsRead={markAsRead}
-                    setSelectAll={setSelectAll}
-                    setUnselectAll={setTriggerUnselect}
-                    unselectAll={triggerUnselect}
-                    selectAll={selectAll} 
-                    deleteEmails={deleteSelected} 
-                    selectedEmails={selected} 
-                    changeSelection={changeSelection} 
-                    onRefresh={() => setTriggerRefresh(false)} 
-                    refresh={triggerRefresh} 
-                    handleScroll={handleScroll} />
+                <Routes>
+                    <Route path='view/:mailId' element={<MailView />} />
+                    <Route path='/*' element={                
+                        <MainSectionContent 
+                            markAsRead={markAsRead}
+                            setSelectAll={setSelectAll}
+                            setUnselectAll={setTriggerUnselect}
+                            unselectAll={triggerUnselect}
+                            selectAll={selectAll} 
+                            deleteEmails={deleteSelected} 
+                            selectedEmails={selected} 
+                            changeSelection={changeSelection} 
+                            onRefresh={() => setTriggerRefresh(false)} 
+                            refresh={triggerRefresh} 
+                            handleScroll={handleScroll} />
+                        } />
+                </Routes>
             </div>
         </div>
     )

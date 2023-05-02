@@ -1088,3 +1088,130 @@ a:visited {
 .closeToastButton:hover {
   cursor: pointer;
 }
+
+.mailView {
+  width: 100%;
+  min-height: 100%;
+  background-color: white;
+  padding-right: 32px;
+  box-sizing: border-box;
+}
+
+.mailViewHeader {
+  padding: 20px 0 8px 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mailViewTitle {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  font-size: 1.375rem;;
+}
+
+.mailViewContent {
+  display: flex;
+}
+
+.mailViewContent > .right {
+  flex: 1;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mailViewContent > .left {
+  padding: 20px 16px 0 16px;
+}
+
+.left .photoContainer {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  object-fit: contain;
+  border-radius: 50%;;
+}
+
+.photoContainer .photo {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.mailViewInformations {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.mailViewInformations > .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+}
+
+.mailViewInformations > .top > .right {
+  display: flex;
+  gap: 16px;
+  align-items: top;
+}
+
+.mailViewInformations > .top > .right > .animatedButton {
+  margin-top: -10px;
+  margin-bottom: -6px;
+}
+
+.mailViewSenderName {
+  font-size: 14px;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.mailViewSenderAddress,
+.mailViewDate,
+.mailViewReceiver {
+  font-size: 12px;
+  color: rgb(94, 94, 94);
+}
+
+.mailViewText {
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  line-height: 19.5px;
+  text-indent: 0px;
+  border-spacing: 0;
+  margin-bottom: 20px;
+}
+
+.mailViewButtons {
+  display: flex;
+  padding: 16px 0;
+}
+
+.mailViewButton {
+  height: 36px;
+  padding-left: 12px;
+  padding-right: 16px;
+  margin-right: 8px;
+  box-sizing: border-box;
+  border-radius: 18px;
+  border: 1px solid #747775;
+  display: flex;
+  align-items: center;
+}
+
+.mailViewButton:hover {
+  cursor: pointer;
+  background-color: rgba(32,33,36,0.059);
+}
+
+.mailViewButtonIcon {
+  margin-right: 8px;
+}
+
+.mailViewButton span {
+  font-size: 14px;
+  color: #444746;
+}
